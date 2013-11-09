@@ -19,12 +19,19 @@
 		 
 		      Search: <input ng-model="query">
 		 	  <div id="status">Current filter: {{query}}</div>
+		 	  
+		 	  <select ng-model="orderValue">
+		 	  	<option value="name">By Name</option>
+		 	  	<option value="age">By Age ASC</option>
+		 	  	<option value="-age">By Age DSC</option>		 	  	
+		 	  </select>
+		 	  
 		    </div>
 		    <div class="span10">
 		      <!--Body content-->
 		 
 		      <ul class="phones">
-		        <li ng-repeat="phone in phones | filter:query">
+		        <li ng-repeat="phone in phones | filter:query | orderBy:orderValue ">
 		          {{phone.name}}
 		          <p>{{phone.snippet}}</p>
 		        </li>
