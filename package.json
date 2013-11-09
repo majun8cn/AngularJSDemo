@@ -1,0 +1,11 @@
+{
+  "name": "AngularJSDemo",
+  "description": "A Demo project for angular js",
+  "devDependencies": {
+        "phantomjs" : "*",
+        "karma" : "*",
+        "karma-junit-reporter" : "*",    
+        "karma-jasmine" : "*",
+        "karma-ng-scenario" : "*"
+    }
+}
