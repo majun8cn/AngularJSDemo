@@ -1,17 +1,10 @@
 var phonecatApp = angular.module('phonecatApp', []);
  
-phonecatApp.controller('PhoneListCtrl', function PhoneListCtrl($scope) {
-  $scope.phones = [
-    {'name': 'Nexus S',
-     'age':1,
-     'snippet': 'Fast just got faster with Nexus S.'},
-    {'name': 'Motorola XOOM™ with Wi-Fi',
-     'age':2,
-     'snippet': 'The Next, Next Generation tablet.'},
-    {'name': 'MOTOROLA XOOM™',
-     'age':3,
-     'snippet': 'The Next, Next Generation tablet.'}
-  ];
-  
-  $scope.orderValue = "age";
-});
+phonecatApp.controller('PhoneListCtrl', ['$scope', '$http',
+  function ($scope, $http) {
+    $http.get('phones/phones.json').success(function(data) {
+      $scope.phones = data;
+    });
+ 
+    $scope.orderProp = 'age';
+  }]);
