@@ -9,6 +9,7 @@ describe('PhoneCat controllers', function() {
     // This allows us to inject a service but then attach it to a variable
     // with the same name as the service.
     beforeEach(module('phonecatApp'));
+    
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
       $httpBackend = _$httpBackend_;
       $httpBackend.expectGET('phones/phones.json').
