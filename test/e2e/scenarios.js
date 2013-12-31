@@ -8,13 +8,13 @@ describe('PhoneCat App', function() {
  
  
     it('should filter the phone list as user types into the search box', function() {
-      expect(repeater('.phones li').count()).toBe(3);
+      expect(repeater('.phones li').count()).toBe(20);
  
       input('query').enter('nexus');
       expect(repeater('.phones li').count()).toBe(1);
  
       input('query').enter('motorola');
-      expect(repeater('.phones li').count()).toBe(2);
+      expect(repeater('.phones li').count()).toBe(8);
     });
     
 	it('should display the current filter value within an element with id "status"', function() {
@@ -37,7 +37,7 @@ describe('PhoneCat App', function() {
           toEqual(["Motorola XOOM\u2122 with Wi-Fi",
                    "MOTOROLA XOOM\u2122"]);
  
-      select('orderProp').option('Name');
+      select('orderProp').option('name');
  
       expect(repeater('.phones li', 'Phone List').column('phone.name')).
           toEqual(["MOTOROLA XOOM\u2122",
@@ -50,5 +50,22 @@ describe('PhoneCat App', function() {
       expect(browser().location().url()).toBe('/phones/nexus-s');
     });
     
+    it('should redirect index.html to index.html#/phones', function() {
+    	browser().navigateTo('app/index.html');
+    	expect(browser().location().url()).toBe('/phones');
+  	});
+  	
   });
+  
+  describe('Phone detail view', function() {
+ 
+    beforeEach(function() {
+      browser().navigateTo('app/index.html#/phones/nexus-s');
+    });
+ 
+ 
+    it('should display placeholder page with phoneId', function() {
+      expect(binding('phoneId')).toBe('nexus-s');
+    });
+ });
 });
